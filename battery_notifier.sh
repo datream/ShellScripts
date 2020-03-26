@@ -1,10 +1,9 @@
-#!/usr/bin/bash
+#!/usr/bin/zsh
 
-
-while [ "$(cat /sys/class/power_supply/BAT0/status)" == "Charging" ]
+while [[ "$(cat /sys/class/power_supply/BAT0/status)" == "Discharging" ]]
 do
   if [ "$(cat /sys/class/power_supply/BAT0/capacity)" -ge 90 ]; then
-    'notify-send' -a "Battery Notifier" -i "/home/rheez/.local/share/icons/McMojave-circle-dark/status/24/battery_charged.svg" "Charging complete" "Consider turning off AC supply"
+    'notify-send' -a "Battery Notifier" -i "$XDG_DATA_HOME/icons/McMojave-circle-dark/status/24/battery_charged.svg" "Charging complete" "Consider turning off power supply"
     exit
   else
     sleep 60
